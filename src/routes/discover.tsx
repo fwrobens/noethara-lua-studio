@@ -101,7 +101,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
 
 function PagerBtn({ label, disabled, onClick, children }: { label: string; disabled: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
-    <motion.button aria-label={label} disabled={disabled} onClick={onClick} whileHover={disabled ? undefined : { y: -2 }} whileTap={disabled ? undefined : { y: 1 }} transition={spring}
+    <motion.button aria-label={label} disabled={disabled} onClick={onClick} whileHover={disabled ? {} : { y: -2 }} whileTap={disabled ? {} : { y: 1 }} transition={spring}
       className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-secondary disabled:opacity-40" style={{ boxShadow: "var(--shadow-lift)" }}>
       {children}
     </motion.button>

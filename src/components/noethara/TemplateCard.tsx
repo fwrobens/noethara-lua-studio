@@ -15,9 +15,9 @@ export function TemplateCard({ t, saved, onSave, onUse, index }: { t: Template; 
       layout={!reduce}
       initial={reduce ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={reduce ? undefined : { opacity: 0, scale: 0.96 }}
+      exit={reduce ? {} : { opacity: 0, scale: 0.96 }}
       transition={{ ...spring, delay: reduce ? 0 : index * 0.05 }}
-      whileHover={reduce ? undefined : { y: -4 }}
+      whileHover={reduce ? {} : { y: -4 }}
       className="group flex overflow-hidden rounded-2xl border border-border bg-card"
       style={{ boxShadow: "var(--shadow-lift)" }}
     >

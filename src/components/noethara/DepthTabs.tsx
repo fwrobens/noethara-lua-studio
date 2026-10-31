@@ -32,8 +32,8 @@ export function DepthTab({
       tabIndex={0}
       onClick={onClick}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onClick?.()}
-      whileHover={reduce ? undefined : { y: -2 }}
-      whileTap={reduce ? undefined : { y: 1, scale: 0.96 }}
+      whileHover={reduce ? {} : { y: -2 }}
+      whileTap={reduce ? {} : { y: 1, scale: 0.96 }}
       transition={spring}
       className={cn(
         "group relative flex cursor-pointer select-none items-center gap-2 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring",

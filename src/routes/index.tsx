@@ -95,7 +95,7 @@ function Studio() {
           </div>
           <AnimatePresence mode="wait">
             {active ? (
-              <motion.div key={active.id} className="flex min-h-0 flex-1" initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
+              <motion.div key={active.id} className="flex min-h-0 flex-1" initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? {} : { opacity: 0, y: -6 }} transition={{ duration: 0.18 }}>
                 <Editor value={active.content ?? ""} onChange={(v) => ws.update(active.id, v)} />
               </motion.div>
             ) : (
@@ -153,8 +153,8 @@ function Studio() {
           <motion.button
             onClick={run}
             disabled={!active}
-            whileHover={reduce ? undefined : { scale: 1.06, y: -2 }}
-            whileTap={reduce ? undefined : { scale: 0.94, y: 1 }}
+            whileHover={reduce ? {} : { scale: 1.06, y: -2 }}
+            whileTap={reduce ? {} : { scale: 0.94, y: 1 }}
             transition={spring}
             aria-label="Run"
             className="my-3 grid h-16 w-16 place-items-center rounded-full text-primary-foreground disabled:opacity-50"
