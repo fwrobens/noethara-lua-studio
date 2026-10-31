@@ -100,6 +100,9 @@ export function mockRun(src: string): string[] {
   const out: string[] = [];
   for (const m of src.matchAll(/print\(([^\n]*)\)/g)) {
     const strs = [...(m[1] ?? "").matchAll(/"([^"]*)"/g)].map((s) => (s[1] ?? "").replace(/%s/g, "Noethara"));
+    const arg = m[1] ?? "";
+    if (/greet\(/.test(arg)) { out.push("Welcome, Noethara. Enjoy your session!"); continue; }
+    if (/formatElapsed\(/.test(arg)) strs.push("00:00");
     out.push(strs.length ? strs.join("") : `<${(m[1] ?? "").trim()}>`);
   }
   return out.length ? out : ["(no output)"];
