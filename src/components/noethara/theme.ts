@@ -14,7 +14,7 @@ export function useTheme() {
     if (t && themes.some((x) => x.id === t)) setTheme(t);
   }, []);
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset["theme"] = theme;
     localStorage.setItem("noethara-theme", theme);
   }, [theme]);
   return [theme, setTheme] as const;
