@@ -12,7 +12,7 @@ export type Template = {
 
 const t = (x: Omit<Template, "id">, i: number): Template => ({ ...x, id: `t${i}` });
 
-export const templates: Template[] = [
+export const templates: Template[] = ([
   { title: "Table utilities", author: "@nyxdev", category: "Utilities", level: "Beginner", uses: 12400, hue: 290, description: "map, filter and reduce helpers for plain tables.", code: 'local T = {}\nfunction T.map(t, f)\n    local r = {}\n    for i, v in ipairs(t) do r[i] = f(v) end\n    return r\nend\nprint("map ready")\nreturn T' },
   { title: "String toolkit", author: "@sunflow", category: "Text", level: "Beginner", uses: 8560, hue: 200, description: "trim, split and pad strings with no dependencies.", code: 'local S = {}\nfunction S.split(s, sep)\n    local out = {}\n    for p in s:gmatch("([^" .. sep .. "]+)") do out[#out+1] = p end\n    return out\nend\nprint("split ready")\nreturn S' },
   { title: "Event emitter", author: "@orbit", category: "Patterns", level: "Intermediate", uses: 6120, hue: 330, description: "A tiny publish / subscribe pattern for decoupled code.", code: 'local Emitter = {}\nEmitter.__index = Emitter\nfunction Emitter.new() return setmetatable({ h = {} }, Emitter) end\nprint("emitter ready")\nreturn Emitter' },
@@ -25,4 +25,4 @@ export const templates: Template[] = [
   { title: "Text wrap", author: "@sunflow", category: "Text", level: "Beginner", uses: 1640, hue: 230, description: "Wrap long text to a fixed column width.", code: 'local function wrap(s, w)\n    return s\nend\nprint("wrap ready")' },
   { title: "Quick sort", author: "@mira", category: "Algorithms", level: "Intermediate", uses: 1420, hue: 100, description: "In-place quick sort with a readable partition step.", code: 'local function qsort(t, lo, hi)\n    -- partition and recurse\nend\nprint("sorted: 1 2 3 4 5")' },
   { title: "State machine", author: "@orbit", category: "Patterns", level: "Intermediate", uses: 1180, hue: 350, description: "Define states and transitions declaratively.", code: 'local FSM = { state = "idle" }\nprint("state: idle")\nreturn FSM' },
-].map(t);
+] as Omit<Template, "id">[]).map(t);

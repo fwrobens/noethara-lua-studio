@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type Node = { id: string; name: string; type: "file" | "folder"; parentId: string | null; content?: string };
+export type Node = { id: string; name: string; type: "file" | "folder"; parentId: string | null; content?: string | undefined };
 export type LogLine = { id: number; time: string; text: string; kind: "out" | "info" | "error" };
 
 const welcome = `-- Noethara workspace configuration
