@@ -47,11 +47,12 @@ function Studio() {
   useEffect(() => logEnd.current?.scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" }), [ws.logs.length, reduce]);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <div className="flex min-h-0 flex-1">
-        <FileTree />
-        <section className="flex min-w-0 flex-1 flex-col bg-panel-deep">
-          <div role="tablist" aria-label="Open files" className="flex items-center gap-1 border-b border-border px-3 py-2">
+    <div className="flex min-h-0 flex-1 flex-col gap-3 p-3 pt-1">
+      <div className="flex min-h-0 flex-1 gap-3">
+        <div className="float-card w-60 shrink-0"><div className="cut-br h-full"><FileTree /></div></div>
+        <div className="float-card flex min-w-0 flex-1">
+        <section className="cut-bl flex min-w-0 flex-1 flex-col bg-panel-deep p-2">
+          <div role="tablist" aria-label="Open files" className="flex items-center gap-1 rounded-xl border border-border bg-panel px-2 py-1.5" style={{ boxShadow: "inset 0 1px 0 oklch(1 0 0 / 9%)" }}>
             <AnimatePresence initial={false}>
               {ws.openTabs.map((id) => {
                 const n = ws.nodes.find((x) => x.id === id);
@@ -64,7 +65,7 @@ function Studio() {
                       active={isActive}
                       label={n.name}
                       onClick={() => ws.setActiveId(id)}
-                      className="h-9 pl-3 pr-1.5 text-sm"
+                      className="cut-tab h-9 rounded-none pl-4 pr-3 text-sm"
                       trailing={
                         <button
                           aria-label={`Close ${n.name}`}
@@ -103,11 +104,12 @@ function Studio() {
             )}
           </AnimatePresence>
         </section>
+        </div>
       </div>
 
       {/* Console + run bar */}
-      <div className="flex border-t border-border bg-panel">
-        <div className="min-w-0 flex-1 px-5 py-3">
+      <div className="flex gap-3">
+        <div className="float-card min-w-0 flex-1"><div className="cut-tr h-full bg-panel px-5 py-3">
           <button onClick={() => setConsoleOpen((o) => !o)} className="flex items-center gap-2 text-[11px] font-medium tracking-[0.2em] text-muted-foreground hover:text-foreground">
             <TerminalSquare className="h-3.5 w-3.5" /> CONSOLE
             <motion.span animate={{ rotate: consoleOpen ? 0 : 180 }} transition={spring}><ChevronUp className="h-3.5 w-3.5" /></motion.span>
@@ -130,8 +132,9 @@ function Studio() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
-        <div className="flex items-center gap-3 border-l border-border px-5">
+        </div></div>
+        <div className="float-card"><div className="cut-tl-br flex h-full items-center bg-panel pl-3">
+        <div className="flex items-center gap-3 px-5">
           <BarBtn label="Save" onClick={() => ws.log(`Saved ${active?.name ?? "nothing"} (mock)`, "info")}><Save className="h-4 w-4" /></BarBtn>
           <BarBtn label="Open folder" onClick={() => ws.log("Open folder is a mock action", "info")}><FolderOpen className="h-4 w-4" /></BarBtn>
           <BarBtn label="Clear console" onClick={ws.clearLogs}><Trash2 className="h-4 w-4" /></BarBtn>
@@ -169,6 +172,7 @@ function Studio() {
             <div className="text-xs text-muted-foreground">Ctrl ↵</div>
           </div>
         </div>
+        </div></div>
       </div>
     </div>
   );

@@ -127,9 +127,9 @@ function RootComponent() {
         <WorkspaceProvider>
           <SavedProvider>
             <div className="flex h-screen min-h-[640px] flex-col p-3">
-              <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-border bg-panel" style={{ boxShadow: "0 30px 80px -30px oklch(0 0 0 / 80%)" }}>
+              <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                 <TopNav />
-                <div className="flex min-h-0 flex-1 flex-col border-t border-border">
+                <div className="flex min-h-0 flex-1 flex-col">
                   <Outlet />
                 </div>
               </div>
