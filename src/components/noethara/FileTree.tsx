@@ -79,8 +79,8 @@ export function FileTree() {
               onClick={() => (n.type === "folder" ? toggle(n.id) : ws.open(n.id))}
               onDoubleClick={() => setEditing(n.id)}
               className={cn(
-                "group relative mx-2 flex cursor-pointer items-center gap-2 rounded-lg py-1.5 pr-1 text-sm transition-colors",
-                active ? "text-foreground" : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+                "group relative mx-2 flex cursor-pointer items-center gap-2 rounded-full py-1.5 pr-1 text-sm transition-colors",
+                active ? "text-primary" : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
               )}
               style={{ paddingLeft: 10 + depth * 14 }}
             >
@@ -88,8 +88,8 @@ export function FileTree() {
                 <motion.span
                   layoutId="tree-active"
                   transition={spring}
-                  className="absolute inset-0 rounded-lg bg-accent"
-                  style={{ boxShadow: "inset 3px 0 0 var(--primary)" }}
+                  className="absolute inset-0 rounded-full bg-primary/15"
+                  style={{ boxShadow: "inset 0 0 0 1px color-mix(in oklab, var(--primary) 25%, transparent)" }}
                 />
               )}
               <span className="relative flex w-3 justify-center">
@@ -102,7 +102,7 @@ export function FileTree() {
               <span className={cn("relative", active && "text-primary")}>
                 {n.type === "folder" ? <FolderIcon size={17} open={isOpen} active={isOpen} /> : <FileIcon size={17} active={active} />}
               </span>
-              <span className="relative min-w-0 flex-1 truncate">
+              <span className={cn("relative min-w-0 flex-1 truncate transition-colors", active && "font-medium text-primary")}>
                 {editing === n.id ? (
                   <NameInput
                     initial={n.name}
@@ -149,7 +149,7 @@ export function FileTree() {
   );
 
   return (
-    <aside className="flex w-60 shrink-0 flex-col border-r border-border bg-panel">
+    <aside className="flex h-full min-h-0 flex-col bg-panel">
       <div className="flex items-center justify-between px-5 py-4">
         <span className="text-[11px] font-medium tracking-[0.2em] text-muted-foreground">WORKSPACE</span>
         <div className="flex gap-1">
